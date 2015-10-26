@@ -82,8 +82,8 @@ genderClassifier.classify <- function(appReviewsDF, namesDF) {
   }
 
   # Join the predicted values to the original app reviews DF
-  appReviewsDF <- left_join(appReviewsDF, resultDF, by = "ID")
-  return(appReviewsDF)
+  newAppReviewsDF <- left_join(appReviewsDF, resultDF, by = "ID")
+  return(newAppReviewsDF)
 }
 
 #mean(predictions == test)

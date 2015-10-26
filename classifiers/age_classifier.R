@@ -1,26 +1,6 @@
 rm(list = ls())
 
-# Load packages
-library(plyr)
-library(dplyr)
-library(sqldf)
-library(tm)
-library(ggplot2)
-library(lsa)
-library(topicmodels)
-library(SnowballC)
-library(rms)
-library(tidyr)
-library(random)
-library(caret)
-library(e1071)
-library(lme4)
-
 # Load src files
-source("config.R")
-source("load_data.R")
-source("training_data.R")
-source("test_data.R")
 source("utilities.R")
 
 ageClassifier.classify <- function(appReviewsDF, blogDF) {

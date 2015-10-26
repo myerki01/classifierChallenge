@@ -4,6 +4,18 @@ data.appReviews.formatDataFrame <- function(dataFrame) {
   colnames(dataFrame)[8] <- "name"
   # create a unique identifier column (to reference each row later)
   dataFrame$ID <- seq.int(nrow(dataFrame))
+  
+  # Subset by popular apps
+  basketBallApp <- 'net.mobilecraft.realbasketball'
+  starbucksApp <- 'com.starbucks.mobilecard'
+  duckHuntApp <- 'com.bigduckgames.flow'
+  fashionApp <- 'com.crowdstar.covetfashion'
+  
+  # Subset data to focus only on 'minecraft', 'starbucks' and a 'fashion app'
+  dataFrame <- subset(dataFrame, ref_no == basketBallApp |
+                      ref_no == starbucksApp |
+                      ref_no == duckHuntApp |
+                      ref_no == fashionApp)
   return(dataFrame)
 }
 

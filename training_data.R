@@ -34,7 +34,7 @@ tdata.appReviews.getNamedUsers <- function(appReviewsDF, namesDF) {
 
 tdata.appReviews.subsetByGender <- function(dataFrame, gender) {
   dataFrame <- subset(dataFrame, Gender == gender, select =c(body, Gender))
-  genderSample <- data.frame(dataFrame[sample(1:nrow(dataFrame), 30000, replace=FALSE),])
+  genderSample <- data.frame(dataFrame[sample(1:nrow(dataFrame), ncol(dataFrame), replace=FALSE),])
   genderSample$body <- (as.character(genderSample[,1]))
   genderSample$body <- utils.cleanUpEmojis(genderSample$body)
   return(genderSample)
