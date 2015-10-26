@@ -22,7 +22,15 @@ utils.cleanCorpus <- function(corpus) {
 
 utils.genTermDocumentMatrix <- function(corpus) {
   tdm <- TermDocumentMatrix(corpus, control=list(minDocFreq=2, wordLengths = c(3, 15)))
-  #tdm <- weightBin(tdm)
+  tdm <- removeSparseTerms(tdm, sparse= 0.999)
+  tdm <- weightBin(tdm)
+  return(tdm)
+}
+
+utils.genTermDocumentMatrixage <- function(corpus) {
+  tdm <- TermDocumentMatrix(corpus, control=list(minDocFreq=2, wordLengths = c(3, 15)))
+  tdm <- removeSparseTerms(tdm, sparse= 0.99)
+  tdm <- weightBin(tdm)
   return(tdm)
 }
 

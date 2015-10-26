@@ -2,6 +2,8 @@
 data.appReviews.formatDataFrame <- function(dataFrame) {
   # rename author column to name
   colnames(dataFrame)[8] <- "name"
+  # create a unique identifier column (to reference each row later)
+  dataFrame$ID <- seq.int(nrow(dataFrame))
   return(dataFrame)
 }
 
@@ -28,4 +30,15 @@ data.names.formatDataFrame <- function(dataFrame) {
 data.names.getDataFrame <- function(path) {
   namesDataFrame <- data.names.formatDataFrame(read.csv(path))
   return(namesDataFrame)
+}
+
+
+# Load Blogger.com data 
+data.blogs.formatDataFrame <- function(dataFrame) {
+  return(dataFrame)
+}
+
+data.blogs.getDataFrame <- function(path) {
+  blogsDataFrame <- data.blogs.formatDataFrame(read.csv(path, header = TRUE))
+  return(blogsDataFrame)
 }

@@ -8,7 +8,7 @@ source('utilities.R')
 tdata.appReviews.getNamedUsers <- function(appReviewsDF, namesDF) {
   # Get all reviews that have names
   appReviewsDF <- (subset(appReviewsDF, name != "A Google User", 
-                          select=c(ref_no, title, body, name, stars)))
+                          select=c(ID, ref_no, title, body, name, stars)))
   # Clean up emojis
   appReviewsDF$ref_no <- sapply(appReviewsDF$ref_no, function(row) iconv(row, "latin1", "ASCII", sub=""))
   
@@ -34,7 +34,7 @@ tdata.appReviews.getNamedUsers <- function(appReviewsDF, namesDF) {
 
 tdata.appReviews.subsetByGender <- function(dataFrame, gender) {
   dataFrame <- subset(dataFrame, Gender == gender, select =c(body, Gender))
-  genderSample <- data.frame(dataFrame[sample(1:nrow(dataFrame), 10000, replace=FALSE),])
+  genderSample <- data.frame(dataFrame[sample(1:nrow(dataFrame), 30000, replace=FALSE),])
   genderSample$body <- (as.character(genderSample[,1]))
   genderSample$body <- utils.cleanUpEmojis(genderSample$body)
   return(genderSample)
