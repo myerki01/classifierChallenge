@@ -7,7 +7,7 @@ source("training_data.R")
 source("test_data.R")
 source("utilities.R")
 source("classifiers/gender_classifier.R")
-source("classifiers/age_classifier.R")
+#source("classifiers/age_classifier.R")
 
 # Gather data (anything with DF in variable name is a data frame)
 appReviewsDF <- data.appReviews.getDataFrame(config.appReviewCSVPath)
