@@ -2,3 +2,4 @@
 config.appReviewCSVPath = '/home/kirsten/descriptionsShort.csv'
 config.namesCSVPath = '/home/kirsten/data/names.csv'
 config.blogsCSVPath = '/home/kirsten/data/blogs.csv'
+config.outputResultPath = '/home/kirsten/results.csv'

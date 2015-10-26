@@ -8,6 +8,6 @@ In addition to app review data this project makes use of two external data sets.
 To run this project first update the paths of your data files in the `config.R` file. Then run `run_analysis.R`. This will load the data sources, run the classifiers and output the results to a .csv file.
 
 ## To Do
-[x] Create gender classifier
-[] Finish age classifier
-[] Create industry classifier
+- [x] Create gender classifier
+- [] Finish age classifier
+- [] Create industry classifier

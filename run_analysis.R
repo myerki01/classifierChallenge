@@ -18,5 +18,7 @@ blogDF <- data.blogs.getDataFrame(config.blogsCSVPath)
 appReviewsDF <- genderClassifier.classify(appReviewsDF, namesDF)
 
 # Build & get results from an age classifier using a Naive Bayes Model
+# appReviewsDF <- ageClassifier.classify(appReviewsDF, blogDF)
 
 # Save results to csv file
+write.csv(appReviewsDF, file=config.outputResultPath)

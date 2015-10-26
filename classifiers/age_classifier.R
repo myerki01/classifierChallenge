@@ -23,7 +23,7 @@ source("training_data.R")
 source("test_data.R")
 source("utilities.R")
 
-age.classifier <- function(appReviewsDF, blogDF) {
+ageClassifier.classify <- function(appReviewsDF, blogDF) {
   # Subset blogDF
   age.10.19 <- subset(blogDF, age < 20, select=(text))
   age.20.29 <- subset(blogDF, age > 20 & age < 30, select=(text))
