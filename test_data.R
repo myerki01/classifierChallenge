@@ -2,7 +2,17 @@
 
 testdata.appReviews.getUnNamedUsers <- function(appReviewsDF) {
   # Get all reviews that have names
-  appReviewsDF <- (subset(appReviewsDF, name == "A Google User", 
+  # Subset by popular apps
+  basketBallApp <- 'net.mobilecraft.realbasketball'
+  starbucksApp <- 'com.starbucks.mobilecard'
+  duckHuntApp <- 'com.bigduckgames.flow'
+  fashionApp <- 'com.crowdstar.covetfashion'
+
+  appReviewsDF <- (subset(appReviewsDF, name == "A Google User" |
+                            ref_no == basketBallApp |
+                            ref_no == starbucksApp |
+                            ref_no == duckHuntApp |
+                            ref_no == fashionApp, 
                           select=c(ID, ref_no, title, body, name, stars)))
   # Clean up emojis
   appReviewsDF$ref_no <- sapply(appReviewsDF$ref_no, function(row) iconv(row, "latin1", "ASCII", sub=""))

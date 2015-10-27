@@ -53,10 +53,14 @@ genderClassifier.classify <- function(appReviewsDF, namesDF) {
   # Prepare Training Data for the Classifier
   train.indx <- sample(nrow(classifierDF), ceiling(nrow(classifierDF) * 0.8))
   data.train <- classifierDF[train.indx,]
+  data.train <- data.train[-1,]
+  data.train <- data.train[-2,]
+  #data.test <- classifierDF[-train.indx,]
+  #test <- data.test[,819]
+  #data.test <- data.test [,-819]
   
   # Train a naive bayes model
   model <- naiveBayes(targetgender~., data=data.train)
-  
   # Prepare data we need to predict
   namesTestDataDF <- testdata.appReviews.getUnNamedUsers(appReviewsDF)
   resultDF <- data.frame("ID"=integer(0), "gender"=character(), stringsAsFactors=FALSE)
@@ -70,7 +74,7 @@ genderClassifier.classify <- function(appReviewsDF, namesDF) {
     df.mat <- t(data.matrix(tdm))
     f.df <- as.data.frame(df.mat, stringsAsFactors = FALSE)
     f.df$targetgender <- NULL
-    
+
     # Run predict
     prediction <- predict(model, f.df)
     if(prediction == 1) {
@@ -86,9 +90,13 @@ genderClassifier.classify <- function(appReviewsDF, namesDF) {
   return(newAppReviewsDF)
 }
 
-#mean(predictions == test)
+#prediction <- predict(model, data.test)
+#mean(prediction == test)
+#summary(test)
 #predictions[90]
-#resultTable <- table(actual = test, predictions = predictions)
+#resultTable <- table(actual = test, predictions = prediction)
 
 #(test)
 #str(classifierDF)
+
+

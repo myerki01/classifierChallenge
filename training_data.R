@@ -13,7 +13,7 @@ tdata.appReviews.getNamedUsers <- function(appReviewsDF, namesDF) {
   appReviewsDF$ref_no <- sapply(appReviewsDF$ref_no, function(row) iconv(row, "latin1", "ASCII", sub=""))
   
   # Remove puncuation
-  gsub("[?.;!¡¿·']", "", appReviewsDF$ref_no)
+  appReviewsDF$ref_no <- gsub("[?.;!¡¿·']", "", appReviewsDF$ref_no)
   
   # Drop all observations formatted incorrectly (we assume anything more than 40
   # characters was formatted incorrectly...might want to later come up with more 
@@ -26,15 +26,15 @@ tdata.appReviews.getNamedUsers <- function(appReviewsDF, namesDF) {
   # Match names to male or female
   appReviewsDF <- left_join(appReviewsDF, namesDF, by = "FirstName")
   appReviewsDF <- utils.complete(appReviewsDF, "Gender")
-  as.character(appReviewsDF$body)
-  as.character(appReviewsDF$ref_no)
+  appReviewsDF$body <- as.character(appReviewsDF$body)
+  appReviewsDF$ref_no <- as.character(appReviewsDF$ref_no)
 
   return(appReviewsDF)
 }
 
 tdata.appReviews.subsetByGender <- function(dataFrame, gender) {
   dataFrame <- subset(dataFrame, Gender == gender, select =c(body, Gender))
-  genderSample <- data.frame(dataFrame[sample(1:nrow(dataFrame), ncol(dataFrame), replace=FALSE),])
+  genderSample <- data.frame(dataFrame[sample(1:nrow(dataFrame), 10000, replace=FALSE),])
   genderSample$body <- (as.character(genderSample[,1]))
   genderSample$body <- utils.cleanUpEmojis(genderSample$body)
   return(genderSample)

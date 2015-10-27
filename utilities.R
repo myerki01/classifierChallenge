@@ -24,7 +24,7 @@ utils.cleanCorpus <- function(corpus) {
 utils.genTermDocumentMatrix <- function(corpus) {
   tdm <- TermDocumentMatrix(corpus, control=list(minDocFreq=2, wordLengths = c(3, 15)))
   tdm <- removeSparseTerms(tdm, sparse= 0.999)
-  tdm <- weightBin(tdm)
+  # tdm <- weightBin(tdm)
   return(tdm)
 }
 
